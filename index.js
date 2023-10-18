@@ -3,6 +3,18 @@ const app = express();
 const fs = require('fs');
 const {} = require('./baseball')
 
+app.get('/', (req, res) => {
+    return res.json({message: 'Welcome to my Baseball App!'})
+})
+
+app.get('/favplayer', (req, res) => {
+    return res.json({ answer: answer });
+})
+
+app.get('/metsroster', (req, res) => {
+    return res.json({Roster: 'Jeff Brigham, José Butto, Carlos Carrasco, Sam Coonrod, Reed Garrett, Trevor Gott,Grant Hartwig,Anthony Kay, Joey Lucchesi, Tylor Megill, Vinny Nittoli, Adam Ottavino, David Peterson, José Quintana, Brooks Raley, Sean Reid-Foley,Denyi Reyes, Kodai Senga, Drew Smith'})
+})
+
 fs.readFile('description.txt', 'utf8', (error, data) => {
     if (error) {
         console.log('----- error ----', error);
@@ -10,6 +22,18 @@ fs.readFile('description.txt', 'utf8', (error, data) => {
         console.log(data);
     }
 })
+
+app.get('/read', (req, res) => {
+    let element = req.query.something; // story
+    fs.readFile(`${element}.txt`, 'utf8', (error, data) => {
+        if (error) {
+            return res.json({ message: 'There is an issue, try again later...'});
+        } else {
+            console.log(data)
+            return res.json({ message: data });
+        }
+    });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
