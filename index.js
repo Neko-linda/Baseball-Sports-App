@@ -24,7 +24,7 @@ fs.readFile('about.txt', 'utf8', (error, data) => {
 });
 
 app.get('/read', (req, res) => {
-    let element = req.query.something; // story
+    let element = req.query.search; // story
     fs.readFile(`${element}.txt`, 'utf8', (error, data) => {
         if (error) {
             return res.json({ message: 'There is an issue, try again later...' });
