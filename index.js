@@ -4,7 +4,7 @@ const fs = require('fs');
 const {} = require('./baseball')
 
 app.get('/', (req, res) => {
-    return res.json({message: 'Welcome to my Baseball App!'})
+    return res.json({message: 'Welcome to my Baseball App!' })
 })
 
 app.get('/favplayer', (req, res) => {
@@ -35,6 +35,9 @@ app.get('/read', (req, res) => {
     });
 });
 
+app.get('/favorites', (req, res) => {
+    return res.json({ message: "World Series Winners Odds!" });
+})
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('Server is running on PORT', PORT)
